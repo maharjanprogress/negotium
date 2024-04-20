@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">negotium</string>
+    <string name="app_name">Negotium</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -8,6 +8,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_gallery">Wishlist</string>
+    <string name="menu_slideshow">My orders</string>
+    <string name="name">name</string>
+    <string name="post">POST</string>
+    <string name="product_category">Product category</string>
+    <string name="image_name">image name</string>
+    <string name="todo">TODO</string>
 </resources>
