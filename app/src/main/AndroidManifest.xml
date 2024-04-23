@@ -17,10 +17,11 @@
         android:theme="@style/Theme.Negotium"
         tools:targetApi="31">
         <activity
-            android:name=".productadd"
+            android:name=".prodictlists"
+            android:label="products here"
             android:exported="false" />
         <activity
-            android:name=".productviewActivity"
+            android:name=".productadd"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"

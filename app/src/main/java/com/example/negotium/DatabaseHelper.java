@@ -89,11 +89,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     Cursor readAllData(){
         String query = "SELECT * FROM product";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = null;
-        if(db != null){
-            cursor = db.rawQuery(query, null);
-        }
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
         return cursor;
     }
 }

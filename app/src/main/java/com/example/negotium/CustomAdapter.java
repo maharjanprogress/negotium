@@ -1,9 +1,12 @@
 package com.example.negotium;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,17 +18,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     //private ArrayList<Integer> productid;
-    private ArrayList  productname, prodesc, price, category, producer;
+    private ArrayList prodpic,productid,productname, prodesc, price, category, producer;
 
-    CustomAdapter(Context context,/*ArrayList<Integer> productid,*/ArrayList productname,ArrayList prodesc,ArrayList price,ArrayList category,ArrayList producer){
-        this.context= context;
-        //this.productid= productid;
-        this.productname= productname;
-        this.prodesc= prodesc;
-        this.price= price;
-        this.category= category;
-        this.producer= producer;
-
+    public CustomAdapter(Context context, ArrayList prodpic, ArrayList productid, ArrayList productname, ArrayList prodesc, ArrayList price, ArrayList category, ArrayList producer) {
+        this.context = context;
+        this.prodpic = prodpic;
+        this.productid = productid;
+        this.productname = productname;
+        this.prodesc = prodesc;
+        this.price = price;
+        this.category = category;
+        this.producer = producer;
     }
 
     @NonNull
@@ -38,12 +41,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
-        //holder.productidt.setText(String.valueOf(productid.get(position)));
-        holder.productnamet.setText(String.valueOf(productname.get(position)));
-        holder.pricet.setText(String.valueOf(price.get(position)));
-        holder.categoryt.setText(String.valueOf(category.get(position)));
-        holder.producert.setText(String.valueOf(producer.get(position)));
-        holder.prodesct.setText(String.valueOf(prodesc.get(position)));
+        byte[] image = (byte[]) prodpic.get(position);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
+        holder.productpic.setImageBitmap(bitmap);
+        holder.productid.setText(String.valueOf(productid.get(position)));
+        holder.productname.setText(String.valueOf(productname.get(position)));
+        holder.price.setText(String.valueOf(price.get(position)));
+        holder.category.setText(String.valueOf(category.get(position)));
+        holder.producer.setText(String.valueOf(producer.get(position)));
+        holder.prodesc.setText(String.valueOf(prodesc.get(position)));
     }
 
     @Override
@@ -52,15 +58,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView /*productidt,*/ productnamet, prodesct, pricet, categoryt, producert;
+        ImageView productpic;
+        TextView productid, productname, prodesc, price, category, producer;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-           // productidt = itemView.findViewById(R.id.prodid);
-            productnamet = itemView.findViewById(R.id.prodname);
-            prodesct = itemView.findViewById(R.id.prodesc);
-            pricet = itemView.findViewById(R.id.price);
-            categoryt = itemView.findViewById(R.id.category);
-            producert = itemView.findViewById(R.id.producers);
+            productpic = itemView.findViewById(R.id.prodpicc);
+           productid = itemView.findViewById(R.id.prodid);
+            productname = itemView.findViewById(R.id.prodnamee);
+            prodesc = itemView.findViewById(R.id.prodesce);
+            price = itemView.findViewById(R.id.pricee);
+            category = itemView.findViewById(R.id.categorye);
+            producer = itemView.findViewById(R.id.producerse);
         }
     }
 }
