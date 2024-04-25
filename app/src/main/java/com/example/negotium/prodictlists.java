@@ -20,9 +20,9 @@ public class prodictlists extends AppCompatActivity {
     DatabaseHelper myDB;
     ArrayList<byte[]> prodpic;
     ArrayList<Integer> productid;
-    ArrayList<String> productname, prodesc, price, category, producer;
+    ArrayList<String> productname, price, category, producer;
 
-    CustomAdapter customAdapter;
+    CustomAadapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,6 @@ public class prodictlists extends AppCompatActivity {
         prodpic = new ArrayList<>();
         productid = new ArrayList<>();
         productname = new ArrayList<>();
-        prodesc = new ArrayList<>();
         price = new ArrayList<>();
         category = new ArrayList<>();
         producer = new ArrayList<>();
@@ -46,7 +45,7 @@ public class prodictlists extends AppCompatActivity {
         storeDataInArrays();
         recyclerView=findViewById(R.id.recyclerView);
 
-        customAdapter = new CustomAdapter(prodictlists.this,prodpic, productid, productname, prodesc, price, category, producer);
+        customAdapter = new CustomAadapter(prodictlists.this,prodpic, productid, productname, price, category, producer);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(prodictlists.this));
     }
@@ -62,7 +61,6 @@ public class prodictlists extends AppCompatActivity {
                 productname.add(cursor.getString(1));
                 category.add(cursor.getString(2));
                 price.add(cursor.getString(3));
-                prodesc.add(cursor.getString(5));
                 producer.add(cursor.getString(6));
             }
         }

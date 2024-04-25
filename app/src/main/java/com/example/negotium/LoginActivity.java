@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
                 } else if (email.equals("admin") && password.equals("admin")) {
                     Toast.makeText(LoginActivity.this, "Welcome Admin", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),productadd.class);
+                    Intent intent = new Intent(getApplicationContext(),AdminPage.class);
                     startActivity(intent);
                 } else{
                     Boolean checkCredential = databaseHelper.checkEmailPassword(email,password);

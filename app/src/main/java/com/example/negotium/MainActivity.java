@@ -45,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
 
         myDB = new DatabaseHelper(MainActivity.this);
         prodpic =new ArrayList<>();
-        productid = new ArrayList<>();
+//        productid = new ArrayList<>();
         productname = new ArrayList<>();
-        prodesc = new ArrayList<>();
+//        prodesc = new ArrayList<>();
         price = new ArrayList<>();
         category = new ArrayList<>();
-        producer = new ArrayList<>();
+//        producer = new ArrayList<>();
 
         storeDataInArrays();
 
         recyclerView=findViewById(R.id.recycleview);
-        customAdapter = new CustomAdapter(MainActivity.this,prodpic, productid, productname, prodesc, price, category, producer);
+        customAdapter = new CustomAdapter(MainActivity.this,prodpic, productname, price, category);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
@@ -101,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
         }else{
             while (cursor.moveToNext()){
                 prodpic.add(cursor.getBlob(4));
-                productid.add(cursor.getInt(0));
+//                productid.add(cursor.getInt(0));
                 productname.add(cursor.getString(1));
                 category.add(cursor.getString(2));
                 price.add(cursor.getString(3));
-                prodesc.add(cursor.getString(5));
-                producer.add(cursor.getString(6));
+//                prodesc.add(cursor.getString(5));
+//                producer.add(cursor.getString(6));
             }
         }
     }

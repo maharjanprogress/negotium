@@ -18,17 +18,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     private Context context;
     //private ArrayList<Integer> productid;
-    private ArrayList prodpic,productid,productname, prodesc, price, category, producer;
+    private ArrayList prodpic,productname,price, category;
 
-    public CustomAdapter(Context context, ArrayList prodpic, ArrayList productid, ArrayList productname, ArrayList prodesc, ArrayList price, ArrayList category, ArrayList producer) {
+    public CustomAdapter(Context context, ArrayList prodpic, ArrayList productname, ArrayList price, ArrayList category) {
         this.context = context;
         this.prodpic = prodpic;
-        this.productid = productid;
+//        this.productid = productid;
         this.productname = productname;
-        this.prodesc = prodesc;
+//        this.prodesc = prodesc;
         this.price = price;
         this.category = category;
-        this.producer = producer;
+//        this.producer = producer;
     }
 
     @NonNull
@@ -44,31 +44,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         byte[] image = (byte[]) prodpic.get(position);
         Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
         holder.productpic.setImageBitmap(bitmap);
-        holder.productid.setText(String.valueOf(productid.get(position)));
         holder.productname.setText(String.valueOf(productname.get(position)));
         holder.price.setText(String.valueOf(price.get(position)));
         holder.category.setText(String.valueOf(category.get(position)));
-        holder.producer.setText(String.valueOf(producer.get(position)));
-        holder.prodesc.setText(String.valueOf(prodesc.get(position)));
     }
 
     @Override
     public int getItemCount() {
-        return producer.size();
+        return prodpic.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView productpic;
-        TextView productid, productname, prodesc, price, category, producer;
+        TextView productname, price, category;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             productpic = itemView.findViewById(R.id.prodpicc);
-           productid = itemView.findViewById(R.id.prodid);
             productname = itemView.findViewById(R.id.prodnamee);
-            prodesc = itemView.findViewById(R.id.prodesce);
             price = itemView.findViewById(R.id.pricee);
             category = itemView.findViewById(R.id.categorye);
-            producer = itemView.findViewById(R.id.producerse);
         }
     }
 }

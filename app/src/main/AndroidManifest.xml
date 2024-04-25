@@ -17,9 +17,12 @@
         android:theme="@style/Theme.Negotium"
         tools:targetApi="31">
         <activity
-            android:name=".prodictlists"
-            android:label="products here"
+            android:name=".AdminPage"
             android:exported="false" />
+        <activity
+            android:name=".prodictlists"
+            android:exported="false"
+            android:label="products here" />
         <activity
             android:name=".productadd"
             android:exported="false" />
