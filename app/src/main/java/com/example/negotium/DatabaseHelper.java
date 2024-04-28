@@ -87,10 +87,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+    public boolean updatedetails(Bitmap pic,String product_name,String producer,String description,String price,String category,int prodid){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ByteArrayOutputStream objectByteOutputStream = new ByteArrayOutputStream();
+        pic.compress(Bitmap.CompressFormat.JPEG,100,objectByteOutputStream);
+        imageInBytes=objectByteOutputStream.toByteArray();
+        String prodid1 = String.valueOf(prodid);
+        ContentValues values = new ContentValues();
+
+        values.put("product_name",product_name);
+        values.put("category",category);
+        values.put("price",price);
+        values.put("pic",imageInBytes);
+        values.put("description",description);
+        values.put("producer",producer);
+        long id1=db.update("product",values,"productid=?",new String[]{prodid1});
+        if(id1<=0){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
     Cursor readAllData(){
         String query = "SELECT * FROM product";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
+    }
+
+    public boolean deleteData(int prodid){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String prodid1 = String.valueOf(prodid);
+        long id1=db.delete("product","productid=?", new String[]{prodid1});
+        if(id1<=0){
+            return false;
+        }
+        else {
+            return true;
+        }
+
     }
 }

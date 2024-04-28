@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHolder> {
+    private final RecyclerViewInterface recyclerViewInterface;
     private Context context;
     private ArrayList prodpic,productid,productname, price, category, producer;
 
-    public CustomAadapter(Context context, ArrayList prodpic, ArrayList productid, ArrayList productname, ArrayList price, ArrayList category, ArrayList producer) {
+    public CustomAadapter(Context context, ArrayList prodpic, ArrayList productid, ArrayList productname, ArrayList price, ArrayList category, ArrayList producer,RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.prodpic = prodpic;
         this.productid = productid;
@@ -25,6 +27,7 @@ public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHo
         this.price = price;
         this.category = category;
         this.producer = producer;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
@@ -54,6 +57,7 @@ public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView productpic;
         TextView productid, productname, price, category, producer;
+        Button updateBtn,deleteBtn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             productpic = itemView.findViewById(R.id.prodpicce);
@@ -62,6 +66,42 @@ public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHo
             price = itemView.findViewById(R.id.priceee);
             category = itemView.findViewById(R.id.categoryee);
             producer = itemView.findViewById(R.id.producersee);
+            updateBtn = itemView.findViewById(R.id.updateBtn);
+            deleteBtn = itemView.findViewById(R.id.deleteBtn);
+
+            deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onItemDelete(pos);
+                    }
+                }
+            });
+
+            updateBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recyclerViewInterface!=null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemUpdate(pos);
+                        }
+                    }
+                }
+            });
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(recyclerViewInterface!=null){
+//                        int pos = getAdapterPosition();
+//                        if(pos != RecyclerView.NO_POSITION){
+//                            recyclerViewInterface.onItemClick(pos);
+//                        }
+//                    }
+//                }
+//            });
         }
     }
 }

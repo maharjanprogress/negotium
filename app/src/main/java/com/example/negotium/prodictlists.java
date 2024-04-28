@@ -1,5 +1,6 @@
 package com.example.negotium;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,13 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class prodictlists extends AppCompatActivity {
+public class prodictlists extends AppCompatActivity implements RecyclerViewInterface{
 
     RecyclerView recyclerView;
     DatabaseHelper myDB;
     ArrayList<byte[]> prodpic;
     ArrayList<Integer> productid;
-    ArrayList<String> productname, price, category, producer;
+    ArrayList<String> productname, price, category, producer,description;
 
     CustomAadapter customAdapter;
 
@@ -41,11 +42,12 @@ public class prodictlists extends AppCompatActivity {
         price = new ArrayList<>();
         category = new ArrayList<>();
         producer = new ArrayList<>();
+        description = new ArrayList<>();
 
         storeDataInArrays();
         recyclerView=findViewById(R.id.recyclerView);
 
-        customAdapter = new CustomAadapter(prodictlists.this,prodpic, productid, productname, price, category, producer);
+        customAdapter = new CustomAadapter(prodictlists.this,prodpic, productid, productname, price, category, producer,this);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(prodictlists.this));
     }
@@ -62,7 +64,39 @@ public class prodictlists extends AppCompatActivity {
                 category.add(cursor.getString(2));
                 price.add(cursor.getString(3));
                 producer.add(cursor.getString(6));
+                description.add(cursor.getString(5));
             }
+        }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onItemUpdate(int position) {
+        Intent intent = new Intent(prodictlists.this, productupdate.class);
+        intent.putExtra("name",productname.get(position));
+        intent.putExtra("pic",prodpic.get(position));
+        intent.putExtra("id",productid.get(position));
+        intent.putExtra("desc",description.get(position));
+        intent.putExtra("category",category.get(position));
+        intent.putExtra("price",price.get(position));
+        intent.putExtra("producer",producer.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onItemDelete(int position) {
+        Boolean delete=myDB.deleteData(productid.get(position));
+        if(delete==true){
+            Toast.makeText(this, "The delete was successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), prodictlists.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(this, "The delete was not successful", Toast.LENGTH_SHORT).show();
         }
     }
 }
