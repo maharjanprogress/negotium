@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Negotium"
         tools:targetApi="31">
         <activity
+            android:name=".productlook"
+            android:exported="false" />
+        <activity
             android:name=".productupdate"
             android:exported="false" />
         <activity

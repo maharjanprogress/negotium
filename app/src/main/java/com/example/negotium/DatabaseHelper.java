@@ -111,7 +111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
-    Cursor readAllData(){
+    public Cursor readAllData(){
         String query = "SELECT * FROM product";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);

@@ -27,12 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
-    RecyclerView recyclerView;
     DatabaseHelper myDB;
-    public ArrayList<byte[]> prodpic;
 
-    public ArrayList<Integer> productid;
-    public ArrayList<String>   productname, prodesc, price, category, producer;
 
     public CustomAdapter customAdapter;
 
@@ -42,22 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        myDB = new DatabaseHelper(MainActivity.this);
-        prodpic =new ArrayList<>();
-//        productid = new ArrayList<>();
-        productname = new ArrayList<>();
-//        prodesc = new ArrayList<>();
-        price = new ArrayList<>();
-        category = new ArrayList<>();
-//        producer = new ArrayList<>();
-
-        storeDataInArrays();
-
-        recyclerView=findViewById(R.id.recycleview);
-        customAdapter = new CustomAdapter(MainActivity.this,prodpic, productname, price, category);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
@@ -94,20 +74,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    void storeDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            Toast.makeText(this, "No Data Found", Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                prodpic.add(cursor.getBlob(4));
-//                productid.add(cursor.getInt(0));
-                productname.add(cursor.getString(1));
-                category.add(cursor.getString(2));
-                price.add(cursor.getString(3));
-//                prodesc.add(cursor.getString(5));
-//                producer.add(cursor.getString(6));
-            }
-        }
-    }
+
 }
