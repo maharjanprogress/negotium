@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Negotium"
         tools:targetApi="31">
         <activity
+            android:name=".Subcategory"
+            android:exported="false" />
+        <activity
             android:name=".productlook"
             android:exported="false" />
         <activity
@@ -49,6 +52,10 @@
             android:exported="false"
             android:label="@string/app_name"
             android:theme="@style/Theme.Negotium.NoActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

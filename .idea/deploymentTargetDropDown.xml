@@ -12,7 +12,20 @@
         <State />
       </entry>
       <entry key="app">
-        <State />
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\progr\.android\avd\Copy_of_Copy_of_Medium_Phone.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-07T07:47:29.873206800Z" />
+        </State>
       </entry>
     </value>
   </component>

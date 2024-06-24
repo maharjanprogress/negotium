@@ -20,7 +20,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
     RecyclerView recyclerView;
     DatabaseHelper myDB;
     ArrayList<byte[]> prodpic;
-    ArrayList<Integer> productid;
+    ArrayList<Integer> productid,catid;
     ArrayList<String> productname, price, category, producer,description;
 
     CustomAadapter customAdapter;
@@ -43,6 +43,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
         category = new ArrayList<>();
         producer = new ArrayList<>();
         description = new ArrayList<>();
+        catid = new ArrayList<>();
 
         storeDataInArrays();
         recyclerView=findViewById(R.id.recyclerView);
@@ -58,13 +59,14 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
             return;
         }else{
             while (cursor.moveToNext()){
-                prodpic.add(cursor.getBlob(4));
+                prodpic.add(cursor.getBlob(5));
                 productid.add(cursor.getInt(0));
                 productname.add(cursor.getString(1));
-                category.add(cursor.getString(2));
-                price.add(cursor.getString(3));
-                producer.add(cursor.getString(6));
-                description.add(cursor.getString(5));
+                catid.add(cursor.getInt(2));
+                category.add(cursor.getString(3));
+                price.add(cursor.getString(4));
+                producer.add(cursor.getString(7));
+                description.add(cursor.getString(6));
             }
         }
     }
@@ -84,6 +86,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
         intent.putExtra("category",category.get(position));
         intent.putExtra("price",price.get(position));
         intent.putExtra("producer",producer.get(position));
+        intent.putExtra("cateid",catid.get(position));
         startActivity(intent);
     }
 

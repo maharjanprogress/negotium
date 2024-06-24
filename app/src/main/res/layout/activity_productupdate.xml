@@ -51,6 +51,37 @@
             android:hint="Product description"
             android:inputType="text" />
 
+        <SearchView
+            android:id="@+id/searchcate"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/negcol1_border"
+            android:searchIcon="@drawable/category"
+            android:iconifiedByDefault="false"
+            android:queryHint="Category"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reciclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/hidden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/hiddenname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
         <EditText
             android:id="@+id/categoryu"
             android:layout_width="match_parent"
