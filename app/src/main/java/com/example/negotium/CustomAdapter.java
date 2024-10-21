@@ -3,6 +3,7 @@ package com.example.negotium;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
@@ -43,9 +50,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.MyViewHolder holder, int position) {
-        byte[] image = (byte[]) prodpic.get(position);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
-        holder.productpic.setImageBitmap(bitmap);
+//        byte[] image = (byte[]) prodpic.get(position);
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
+//        holder.productpic.setImageBitmap(bitmap);
+        Glide.with(context).load(Constants.ROOT_IMAGEURL+prodpic.get(position)).into(holder.productpic);
+//        holder.productpic.setImageBitmap(getBitmapFromURL((String) prodpic.get(position)));
         holder.productname.setText(String.valueOf(productname.get(position)));
         holder.price.setText(String.valueOf(price.get(position)));
         holder.category.setText(String.valueOf(category.get(position)));
@@ -79,4 +88,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             });
         }
     }
+//    public static Bitmap getBitmapFromURL(String src) {
+//        try {
+//            Log.e("src",src);
+//            URL url = new URL(src);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//            connection.setDoInput(true);
+//            connection.connect();
+//            InputStream input = connection.getInputStream();
+//            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+//            Log.e("Bitmap","returned");
+//            return myBitmap;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Log.e("Exception",e.getMessage());
+//            return null;
+//        }
+//    }
 }
