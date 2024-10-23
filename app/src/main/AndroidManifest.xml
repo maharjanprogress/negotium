@@ -27,6 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".productlook"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".productupdate"

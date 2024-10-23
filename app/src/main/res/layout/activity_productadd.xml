@@ -71,18 +71,19 @@
         <TextView
             android:id="@+id/hidden"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:visibility="invisible"
             tools:visibility="invisible" />
 
         <EditText
             android:id="@+id/hiddenname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:ems="10"
             android:inputType="text"
             android:visibility="invisible"
             tools:visibility="invisible" />
+
 
         <EditText
             android:id="@+id/category"

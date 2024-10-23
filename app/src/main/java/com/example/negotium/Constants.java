@@ -9,4 +9,7 @@ public class Constants {
     public static final String URL_SUBCATEGORY = ROOT_URL+"subcategory.php";
     public static final String URL_PRODUCTSEARCH = ROOT_URL+"productsearch.php";
     public static final String URL_SUBCATEPRODUCT = ROOT_URL+"subcateProduct.php";
+    public static final String URL_PUTPRODUCT = ROOT_URL+"putProduct.php";
+    public static final String URL_UPDATEPRODUCT = ROOT_URL+"updateProduct.php";
+    public static final String URL_DELETEPRODUCT = ROOT_URL+"productDelete.php";
 }

@@ -29,6 +29,10 @@ public class productlook extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        setSupportActionBar(binding.myToolbar);
+        getSupportActionBar().setTitle("");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 //        id= getIntent().getIntExtra("id",5);
         id= getIntent().getStringExtra("id");
         String namee = getIntent().getStringExtra("name");

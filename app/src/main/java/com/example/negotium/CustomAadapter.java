@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHolder> {
@@ -40,9 +42,10 @@ public class CustomAadapter extends RecyclerView.Adapter<CustomAadapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CustomAadapter.MyViewHolder holder, int position) {
-        byte[] image = (byte[]) prodpic.get(position);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
-        holder.productpic.setImageBitmap(bitmap);
+//        byte[] image = (byte[]) prodpic.get(position);
+//        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
+//        holder.productpic.setImageBitmap(bitmap);
+        Glide.with(context).load(Constants.ROOT_IMAGEURL+prodpic.get(position)).into(holder.productpic);
         holder.productid.setText(String.valueOf(productid.get(position)));
         holder.productname.setText(String.valueOf(productname.get(position)));
         holder.price.setText(String.valueOf(price.get(position)));
