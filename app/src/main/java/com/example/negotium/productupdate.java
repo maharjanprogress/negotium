@@ -120,6 +120,7 @@ public class productupdate extends AppCompatActivity implements RecyclerViewInte
         binding.prodescu.setText(descee);
         binding.categoryu.setText(categoryee);
         binding.produceru.setText(produceree);
+        binding.hiddenname.setText(cname);
 
 //        Bitmap bitmap = BitmapFactory.decodeByteArray(needpic,0,needpic.length);
 //        binding.imageuploadu.setImageBitmap(bitmap);
