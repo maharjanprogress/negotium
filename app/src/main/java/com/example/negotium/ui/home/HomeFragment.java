@@ -276,13 +276,13 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
     @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(getContext(), productlook.class);
-        intent.putExtra("name",product_name.get(position));
-        intent.putExtra("pic",pic.get(position));
+//        intent.putExtra("name",product_name.get(position));
+//        intent.putExtra("pic",pic.get(position));
         intent.putExtra("id",productid.get(position));
-        intent.putExtra("desc",description.get(position));
-        intent.putExtra("category",category.get(position));
-        intent.putExtra("price",price.get(position));
-        intent.putExtra("producer",producer.get(position));
+//        intent.putExtra("desc",description.get(position));
+//        intent.putExtra("category",category.get(position));
+//        intent.putExtra("price",price.get(position));
+//        intent.putExtra("producer",producer.get(position));
         startActivity(intent);
     }
 

@@ -12,4 +12,5 @@ public class Constants {
     public static final String URL_PUTPRODUCT = ROOT_URL+"putProduct.php";
     public static final String URL_UPDATEPRODUCT = ROOT_URL+"updateProduct.php";
     public static final String URL_DELETEPRODUCT = ROOT_URL+"productDelete.php";
+    public static final String URL_ADDWISH = ROOT_URL+"addWish.php";
 }
