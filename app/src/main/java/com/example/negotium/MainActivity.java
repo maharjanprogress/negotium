@@ -41,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        if(!SharedPrefManager.getInstance(this).isLoggedIn()){
+            finish();
+            startActivity(new Intent(this,LoginActivity.class));
+        }
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {

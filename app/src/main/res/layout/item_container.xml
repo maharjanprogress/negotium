@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/layoutwishlist"
+    android:layout_margin="5dp">
+
+    <View
+        android:id="@+id/viewSupporter"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:layout_constraintTop_toBottomOf="@id/imageWish"/>
+
+    <View
+        android:id="@+id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/wishlist_background"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textName"
+        />
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageWish"
+        android:layout_width="110dp"
+        android:layout_height="152dp"
+        android:layout_marginStart="15dp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="6dp"/>
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="10dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageWish"
+        app:layout_constraintTop_toTopOf="@id/imageWish" />
+
+    <ImageView
+        android:id="@+id/imageSelected"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/checkmark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/viewBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBackground"/>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="quantity: "
+        app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textquantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
+        app:layout_constraintStart_toStartOf="@+id/textproducer"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Producer: "
+        app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textproducer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/viewSupporter"
+        app:layout_constraintStart_toEndOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rs. total"
+        app:layout_constraintBottom_toBottomOf="@+id/textproducer"
+        app:layout_constraintEnd_toEndOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <TextView
+        android:id="@+id/textprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/angkor"
+        android:text="20"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView19"
+        app:layout_constraintEnd_toStartOf="@+id/textView19" />
+
+    <!--    <RatingBar-->
+<!--        android:id="@+id/ratingBar"-->
+<!--        style="@style/Theme.Negotium"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:isIndicator="true"-->
+<!--        android:numStars="5"-->
+<!--        android:theme="@style/RatingBar"-->
+<!--        app:layout_constraintStart_toStartOf="@id/textName"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textName"/>-->
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

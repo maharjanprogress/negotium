@@ -41,6 +41,7 @@ public class productlook extends AppCompatActivity {
     Dialog dialog;
     Button btnplus,btnminus,addwish;
     TextView text;
+    Integer buttonflag;
     private ProgressDialog progressDialog;
     private String priceee,descee,categoryee,produceree,picc,subcate,namee;
 
@@ -112,17 +113,29 @@ public class productlook extends AppCompatActivity {
 
         binding.wishButton.setOnClickListener(new View.OnClickListener() {
             @Override
+            
             public void onClick(View v) {
+                buttonflag = 1;
                 dialog.show();
             }
+            
         });
 
         addwish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendAPI(userid,id,text.getText().toString());
+                sendAPI(userid, id, text.getText().toString(),buttonflag);
             }
         });
+        
+        binding.buyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonflag = 2;
+                dialog.show();
+            }
+        });
+        
     }
 
     private void getproductdetails(String id) {
@@ -190,11 +203,18 @@ public class productlook extends AppCompatActivity {
         binding.lookname.setText(namee);
     }
 
-    private void sendAPI(Integer userid, String id, String quantity) {
-        progressDialog.setMessage("Updating product...");
+    private void sendAPI(Integer userid, String id, String quantity, Integer flag) {
+        progressDialog.setMessage("Adding to wishlist...");
         progressDialog.show();
+        String URL = null;
+        if(flag==1){
+            URL=Constants.URL_ADDWISH;
+        } else if (flag==2) {
+            URL=Constants.URL_BUYDIRECT;
+        }
+
         StringRequest stringRequest = new StringRequest(
-                Request.Method.POST, Constants.URL_ADDWISH,
+                Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
