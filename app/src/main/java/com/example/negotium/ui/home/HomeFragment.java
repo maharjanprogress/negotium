@@ -53,6 +53,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
 //    private ArrayList<Integer> productid,catid;
 //    private ArrayList<String>   productname, prodesc, price, category, producer;
     ArrayList<String> productid, product_name, category, subcate,price,pic,description,producer,categoryy;
+    ArrayList<String> rating;
     DatabaseHelper db;
     private ProgressDialog progressDialog;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -84,6 +85,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         description = new ArrayList<>();
         producer = new ArrayList<>();
         categoryy = new ArrayList<>();
+        rating = new ArrayList<>();
         lol();
 //        db= new DatabaseHelper(getContext());
 //        prodpic =new ArrayList<>();
@@ -123,6 +125,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                 category = new ArrayList<>();
                 producer = new ArrayList<>();
                 categoryy = new ArrayList<>();
+                rating = new ArrayList<>();
 //                catid = new ArrayList<>();
 //                cateid = new ArrayList<>();
 //                catename = new ArrayList<>();
@@ -149,12 +152,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
 //        }
 //    }
 
-    private void getadapter(/*ArrayList<byte[]> prodpic*/ArrayList<String> pic, ArrayList<String> product_name, ArrayList<String> price, ArrayList<String> categoryy, ArrayList<String> productid,ArrayList<String> producer) {
+    private void getadapter(/*ArrayList<byte[]> prodpic*/ArrayList<String> pic, ArrayList<String> product_name, ArrayList<String> price, ArrayList<String> categoryy, ArrayList<String> productid,ArrayList<String> producer,ArrayList<String> rating) {
         customCategory = new CustomCategory(getContext(),productid,categoryy,this);
         categoryview.setAdapter(customCategory);
 //        categoryview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        customAdapter = new CustomAdapter(getContext(),pic, product_name, price, producer,this);
+        customAdapter = new CustomAdapter(getContext(),pic, product_name, price, producer,rating,this);
         recyclerView.setAdapter(customAdapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
@@ -180,6 +183,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                             JSONArray jsonArray6 = (JSONArray)obj.getJSONArray("description");
                             JSONArray jsonArray7 = (JSONArray)obj.getJSONArray("producer");
                             JSONArray jsonArray8 = (JSONArray)obj.getJSONArray("categoryy");
+                            JSONArray jsonArray9 = (JSONArray)obj.getJSONArray("rating");
                             if(jsonArray != null){
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     productid.add(jsonArray.getString(i));
@@ -190,6 +194,12 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                                     pic.add(jsonArray5.getString(i));
                                     description.add(jsonArray6.getString(i));
                                     producer.add(jsonArray7.getString(i));
+                                    if (jsonArray9.getString(i)=="null") {
+                                        rating.add("0");
+                                    }
+                                    else {
+                                        rating.add(jsonArray9.getString(i));
+                                    }
                                 }
                                 for (int i = 0; i < jsonArray8.length(); i++) {
                                     categoryy.add(jsonArray8.getString(i));
@@ -198,7 +208,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                             }}else{
                                 Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
-                            getadapter(pic, product_name, price, categoryy,productid,producer);
+                            getadapter(pic, product_name, price, categoryy,productid,producer,rating);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -319,6 +329,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                             JSONArray jsonArray6 = (JSONArray)obj.getJSONArray("description");
                             JSONArray jsonArray7 = (JSONArray)obj.getJSONArray("producer");
                             JSONArray jsonArray8 = (JSONArray)obj.getJSONArray("categoryy");
+                            JSONArray jsonArray9 = (JSONArray)obj.getJSONArray("rating");
                             if(jsonArray != null){
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     productid.add(jsonArray.getString(i));
@@ -329,13 +340,19 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
                                     pic.add(jsonArray5.getString(i));
                                     description.add(jsonArray6.getString(i));
                                     producer.add(jsonArray7.getString(i));
+                                    if (jsonArray9.getString(i)=="null") {
+                                        rating.add("0");
+                                    }
+                                    else {
+                                        rating.add(jsonArray9.getString(i));
+                                    }
                                 }
                                 for (int i = 0; i < jsonArray8.length(); i++) {
                                     categoryy.add(jsonArray8.getString(i));
                                 }
                                 progressDialog.dismiss();
                             }
-                            getadapter(pic, product_name, price, categoryy,productid,producer);
+                            getadapter(pic, product_name, price, categoryy,productid,producer,rating);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

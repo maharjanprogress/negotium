@@ -43,7 +43,7 @@ public class productlook extends AppCompatActivity {
     TextView text;
     Integer buttonflag;
     private ProgressDialog progressDialog;
-    private String priceee,descee,categoryee,produceree,picc,subcate,namee;
+    private String priceee,descee,categoryee,produceree,picc,subcate,namee,ratinge,counte;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,6 +135,19 @@ public class productlook extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        binding.ratingclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Integer.parseInt(counte) > 0) {
+                    Intent intent = new Intent(productlook.this, ViewProductRating.class);
+                    intent.putExtra("id",id);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(productlook.this, "No reviews yet", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         
     }
 
@@ -157,6 +170,8 @@ public class productlook extends AppCompatActivity {
                             JSONArray jsonArray5 = (JSONArray)obj.getJSONArray("pic");
                             JSONArray jsonArray6 = (JSONArray)obj.getJSONArray("description");
                             JSONArray jsonArray7 = (JSONArray)obj.getJSONArray("producer");
+                            JSONArray jsonArray8 = (JSONArray)obj.getJSONArray("rating");
+                            JSONArray jsonArray9 = (JSONArray)obj.getJSONArray("count");
                             if(jsonArray1 != null){
                                 for (int i = 0; i < jsonArray1.length(); i++) {
                                     priceee=jsonArray4.getString(i);
@@ -166,8 +181,15 @@ public class productlook extends AppCompatActivity {
                                     produceree=jsonArray7.getString(i);
                                     picc=jsonArray5.getString(i);
                                     namee=jsonArray1.getString(i);
+                                    if (jsonArray8.getString(i)=="null"){
+                                        ratinge="0";
+                                    }else {
+                                        ratinge=jsonArray8.getString(i);
+                                    }
+
+                                    counte=jsonArray9.getString(i);
                                 }
-                                putdetails(namee,priceee,descee,categoryee,produceree,picc,subcate);
+                                putdetails(namee,priceee,descee,categoryee,produceree,picc,subcate,ratinge,counte);
                                 progressDialog.dismiss();
                             }
                         } catch (JSONException e) {
@@ -193,7 +215,7 @@ public class productlook extends AppCompatActivity {
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void putdetails(String namee,String priceee, String descee, String categoryee, String produceree, String picc, String subcate) {
+    private void putdetails(String namee, String priceee, String descee, String categoryee, String produceree, String picc, String subcate, String ratinge, String counte) {
         binding.lookprice.setText(priceee);
 //        binding.lookpic.setImageBitmap(lol);
         Glide.with(this).load(Constants.ROOT_IMAGEURL+picc).into(binding.lookpic);
@@ -201,6 +223,8 @@ public class productlook extends AppCompatActivity {
         binding.lookcategory.setText(categoryee);
         binding.lookproducer.setText(produceree);
         binding.lookname.setText(namee);
+        binding.viewrating.setRating(Float.parseFloat(ratinge));
+        binding.reviewnum.setText("View Ratings & Reviews("+counte+")");
     }
 
     private void sendAPI(Integer userid, String id, String quantity, Integer flag) {

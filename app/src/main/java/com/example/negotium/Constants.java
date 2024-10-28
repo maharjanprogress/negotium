@@ -17,4 +17,8 @@ public class Constants {
     public static final String URL_DELETEWISH = ROOT_URL+"deletewish.php";
     public static final String URL_BUYDIRECT = ROOT_URL+"buydirectly.php";
     public static final String URL_GETWISH = ROOT_URL+"getWishlist.php";
+    public static final String URL_BUYLIST = ROOT_URL+"buylist.php";
+    public static final String URL_DELETEBUY = ROOT_URL+"deletebuy.php";
+    public static final String URL_RATEPRODUCT = ROOT_URL+"rateproducts.php";
+    public static final String URL_GETPRODUCTRATING = ROOT_URL+"getproductrating.php";
 }

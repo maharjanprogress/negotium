@@ -35,6 +35,7 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
     ActivitySubcateProductBinding binding;
     private ProgressDialog progressDialog;
     ArrayList<String> productid, product_name, category, subcate,price,pic,description,producer;
+    ArrayList<String> rating;
     CustomAdapter customAdapter;
     RecyclerView recyclerView;
 
@@ -63,6 +64,7 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
         pic = new ArrayList<>();
         description = new ArrayList<>();
         producer = new ArrayList<>();
+        rating = new ArrayList<>();
 
         String search = getIntent().getStringExtra("subcate");
 
@@ -92,6 +94,7 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
                                 JSONArray jsonArray5 = (JSONArray)obj.getJSONArray("pic");
                                 JSONArray jsonArray6 = (JSONArray)obj.getJSONArray("description");
                                 JSONArray jsonArray7 = (JSONArray)obj.getJSONArray("producer");
+                                JSONArray jsonArray8 = (JSONArray)obj.getJSONArray("rating");
                                 if(jsonArray != null){
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         productid.add(jsonArray.getString(i));
@@ -102,12 +105,18 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
                                         pic.add(jsonArray5.getString(i));
                                         description.add(jsonArray6.getString(i));
                                         producer.add(jsonArray7.getString(i));
+                                        if (jsonArray8.getString(i)=="null") {
+                                            rating.add("0");
+                                        }
+                                        else {
+                                            rating.add(jsonArray8.getString(i));
+                                        }
                                     }
                                     progressDialog.dismiss();
                                 }}else{
                                 Toast.makeText(SubcateProduct.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                             }
-                            getadapter(pic, product_name, price,productid,producer);
+                            getadapter(pic, product_name, price,productid,producer,rating);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -131,8 +140,8 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void getadapter(ArrayList<String> pic, ArrayList<String> product_name, ArrayList<String> price, ArrayList<String> productid, ArrayList<String> producer) {
-        customAdapter = new CustomAdapter(this,pic, product_name, price, producer,this);
+    private void getadapter(ArrayList<String> pic, ArrayList<String> product_name, ArrayList<String> price, ArrayList<String> productid, ArrayList<String> producer, ArrayList<String> rating) {
+        customAdapter = new CustomAdapter(this,pic, product_name, price, producer,rating,this);
         recyclerView.setAdapter(customAdapter);
     }
 

@@ -24,7 +24,7 @@
             android:text="Product Name"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prodpicc" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
 
         <TextView
             android:id="@+id/pricee"
@@ -71,6 +71,18 @@
             android:text="rs"
             app:layout_constraintBaseline_toBaselineOf="@+id/pricee"
             app:layout_constraintStart_toEndOf="@+id/pricee" />
+
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:isIndicator="true"
+            android:progressTint="#FFEB3B"
+            android:rating="3.75"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/prodpicc" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

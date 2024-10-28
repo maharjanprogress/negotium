@@ -55,14 +55,15 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String name = binding.signupName.getText().toString();
                 String email = binding.signupEmail.getText().toString();
+                String number = binding.signupPhone.getText().toString();
                 String password = binding.signupPassword.getText().toString();
                 String confirmPassword = binding.signupConform.getText().toString();
 
-                if(name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty())
+                if(name.isEmpty() || email.isEmpty() || password.isEmpty() || number.isEmpty() || confirmPassword.isEmpty())
                     Toast.makeText(RegistrationActivity.this, "All fields are mandatory", Toast.LENGTH_SHORT).show();
                 else{
                     if(password.equals(confirmPassword)){
-                        registerUser(email,name,password);
+                        registerUser(email,name,password,number);
 //                        Boolean checkUserEmail = databaseHelper.checkEmail(email);
 //                        if(checkUserEmail == false){
 //                            Boolean insert = databaseHelper.insertData(name,email,password);
@@ -91,7 +92,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
-    private void registerUser(String email,String username,String password){
+    private void registerUser(String email, String username, String password, String number){
 
         progressDialog.setMessage("Registering user...");
         progressDialog.show();
@@ -121,6 +122,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 params.put("username",username);
                 params.put("email",email);
                 params.put("password",password);
+                params.put("phoneno",number);
                 return params;
             }
         };

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,8 +28,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     //private ArrayList<Integer> productid;
     private ArrayList prodpic,productname,price, category;
+    private ArrayList<String> rating;
 
-    public CustomAdapter(Context context, ArrayList prodpic, ArrayList productname, ArrayList price, ArrayList category,RecyclerViewInterface recyclerViewInterface) {
+    public CustomAdapter(Context context, ArrayList prodpic, ArrayList productname, ArrayList price, ArrayList category, ArrayList rating, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.prodpic = prodpic;
 //        this.productid = productid;
@@ -36,6 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 //        this.prodesc = prodesc;
         this.price = price;
         this.category = category;
+        this.rating=rating;
 //        this.producer = producer;
         this.recyclerViewInterface = recyclerViewInterface;
     }
@@ -58,6 +61,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         holder.productname.setText(String.valueOf(productname.get(position)));
         holder.price.setText(String.valueOf(price.get(position)));
         holder.category.setText(String.valueOf(category.get(position)));
+        holder.ratingBar.setRating(Float.valueOf(rating.get(position)));
     }
 
     @Override
@@ -68,12 +72,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView productpic;
         TextView productname, price, category;
+        RatingBar ratingBar;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             productpic = itemView.findViewById(R.id.prodpicc);
             productname = itemView.findViewById(R.id.prodnamee);
             price = itemView.findViewById(R.id.pricee);
             category = itemView.findViewById(R.id.categorye);
+            ratingBar = itemView.findViewById(R.id.ratingBar2);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

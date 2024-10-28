@@ -7,16 +7,79 @@
     tools:context=".ui.slideshow.SlideshowFragment">
 
     <TextView
-        android:id="@+id/text_slideshow"
-        android:layout_width="match_parent"
+        android:id="@+id/totalcostforbuy"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/alfa_slab_one"
+        android:text="No items To Recieve"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/buylistRecycle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/boughtproduct"
+        app:layout_constraintTop_toBottomOf="@+id/cancelbuy" />
+
+    <ImageView
+        android:id="@+id/boughtproduct"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/baseline_shopping_cart_checkout_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bought Products"
+        app:layout_constraintEnd_toEndOf="@+id/boughtproduct"
+        app:layout_constraintStart_toStartOf="@+id/boughtproduct"
+        app:layout_constraintTop_toBottomOf="@+id/boughtproduct" />
+
+    <ImageView
+        android:id="@+id/rateproduct"
+        android:layout_width="61dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/baseline_star_rate_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate Your Purchase"
+        app:layout_constraintEnd_toEndOf="@+id/rateproduct"
+        app:layout_constraintStart_toStartOf="@+id/rateproduct"
+        app:layout_constraintTop_toBottomOf="@+id/rateproduct" />
+
+    <Button
+        android:id="@+id/cancelbuy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:backgroundTint="@color/cancelred"
+        android:visibility="gone"
+        android:text="Cancel Items"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalcostforbuy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
