@@ -112,7 +112,6 @@ public class BoughtProduct extends AppCompatActivity implements BuylistListener{
 //                                        description.add(jsonArray6.getString(i));
 //                                        producer.add(jsonArray7.getString(i));
                                     }
-                                    Toast.makeText(BoughtProduct.this, buyLists.get(2).israted, Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                     send(buyLists);
                                 }progressDialog.dismiss();

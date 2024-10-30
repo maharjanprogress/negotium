@@ -309,6 +309,16 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
 
     }
 
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
+
     private void lol(){
         progressDialog.setMessage("showing products...");
         progressDialog.show();

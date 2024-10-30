@@ -33,6 +33,13 @@ public class AdminPage extends AppCompatActivity {
             return insets;
 
         });
+        binding.buyrequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ClientRequest.class);
+                startActivity(intent);
+            }
+        });
         binding.adminadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

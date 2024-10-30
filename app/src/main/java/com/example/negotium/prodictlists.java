@@ -230,4 +230,14 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
 //            Toast.makeText(this, "The delete was not successful", Toast.LENGTH_SHORT).show();
 //        }
     }
+
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
 }

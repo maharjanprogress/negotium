@@ -358,4 +358,14 @@ public class productupdate extends AppCompatActivity implements RecyclerViewInte
     public void onItemDelete(int position) {
 
     }
+
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
 }

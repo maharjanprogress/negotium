@@ -312,4 +312,14 @@ public class productadd extends AppCompatActivity implements RecyclerViewInterfa
     public void onItemDelete(int position) {
 
     }
+
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
 }

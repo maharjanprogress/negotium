@@ -167,4 +167,14 @@ public class SubcateProduct extends AppCompatActivity implements RecyclerViewInt
     public void onItemDelete(int position) {
 
     }
+
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
 }

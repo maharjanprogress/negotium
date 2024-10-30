@@ -151,4 +151,14 @@ public class Subcategory extends AppCompatActivity implements RecyclerViewInterf
     public void onItemDelete(int position) {
 
     }
+
+    @Override
+    public void onDateAccept(String date) {
+
+    }
+
+    @Override
+    public void onDateDecline(String date) {
+
+    }
 }
