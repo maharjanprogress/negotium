@@ -25,4 +25,10 @@ public class Constants {
     public static final String URL_GETBUYDATE = ROOT_URL+"getbuydate.php";
     public static final String URL_ADMINSUBITEM = ROOT_URL+"adminsubitem.php";
     public static final String URL_ADMINITEM = ROOT_URL+"adminitem.php";
+    public static final String URL_ADMINTEXTLIST = ROOT_URL+"admintextlist.php";
+    public static final String URL_MESSAGELIST = ROOT_URL+"messagelist.php";
+    public static final String URL_MESSAGEFROMADMIN = ROOT_URL+"messagefromadmin.php";
+    public static final String URL_NEWMESSAGE = ROOT_URL+"newmessage.php";
+    public static final String URL_USERMESSAGELIST = ROOT_URL+"usermessagelist.php";
+    public static final String URL_MESSAGEFROMUSER = ROOT_URL+"messagefromuser.php";
 }

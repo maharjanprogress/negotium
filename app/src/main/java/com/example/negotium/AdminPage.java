@@ -40,6 +40,13 @@ public class AdminPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.adminchat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChatList.class);
+                startActivity(intent);
+            }
+        });
         binding.adminadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

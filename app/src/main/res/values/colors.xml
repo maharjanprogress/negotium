@@ -13,4 +13,6 @@
     <color name="negcol">#1A330E</color>
     <color name="negcol1">#63B338</color>
     <color name="cancelred">#830707</color>
+    <color name="skin">#ECDCA5</color>
+    <color name="newmessborder">#FE5576</color>
 </resources>
