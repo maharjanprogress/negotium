@@ -2,8 +2,8 @@ package com.example.negotium;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +20,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.negotium.databinding.ActivityClientRequestBinding;
+import com.example.negotium.databinding.ActivityProdictlistsBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,9 +31,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class prodictlists extends AppCompatActivity implements RecyclerViewInterface{
+public class Prodictlists extends AppCompatActivity implements RecyclerViewInterface{
 
     RecyclerView recyclerView;
+    ActivityProdictlistsBinding binding;
     DatabaseHelper myDB;
     ArrayList<byte[]> prodpic;
 //    ArrayList<Integer> productid,catid;
@@ -46,7 +49,8 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_prodictlists);
+        binding = ActivityProdictlistsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -54,6 +58,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
         });
         progressDialog = new ProgressDialog(this);
 
+        binding.searchaView.clearFocus();
         productid = new ArrayList<>();
         product_name = new ArrayList<>();
         category = new ArrayList<>();
@@ -63,6 +68,28 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
         description = new ArrayList<>();
         producer = new ArrayList<>();
         lol();
+
+        binding.searchaView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                productid = new ArrayList<>();
+                product_name = new ArrayList<>();
+                category = new ArrayList<>();
+                subcate = new ArrayList<>();
+                price = new ArrayList<>();
+                pic = new ArrayList<>();
+                description = new ArrayList<>();
+                producer = new ArrayList<>();
+
+                storeArray(newText);
+                return true;
+            }
+        });
 //
 //        myDB = new DatabaseHelper(prodictlists.this);
 //        prodpic = new ArrayList<>();
@@ -78,6 +105,63 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
         recyclerView=findViewById(R.id.recyclerView);
 
 
+    }
+
+    private void storeArray(String newText) {
+        progressDialog.setMessage("showing products...");
+        progressDialog.show();
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST, Constants.URL_PRODUCTSEARCH,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+
+                        try {
+                            JSONObject obj = new JSONObject(s);
+                            JSONArray jsonArray = (JSONArray)obj.getJSONArray("productid");
+                            JSONArray jsonArray1 = (JSONArray)obj.getJSONArray("product_name");
+                            JSONArray jsonArray2 = (JSONArray)obj.getJSONArray("category");
+                            JSONArray jsonArray3 = (JSONArray)obj.getJSONArray("subcate");
+                            JSONArray jsonArray4 = (JSONArray)obj.getJSONArray("price");
+                            JSONArray jsonArray5 = (JSONArray)obj.getJSONArray("pic");
+                            JSONArray jsonArray6 = (JSONArray)obj.getJSONArray("description");
+                            JSONArray jsonArray7 = (JSONArray)obj.getJSONArray("producer");
+                            if(jsonArray != null){
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    productid.add(jsonArray.getString(i));
+                                    product_name.add(jsonArray1.getString(i));
+                                    category.add(jsonArray2.getString(i));
+                                    subcate.add(jsonArray3.getString(i));
+                                    price.add(jsonArray4.getString(i));
+                                    pic.add(jsonArray5.getString(i));
+                                    description.add(jsonArray6.getString(i));
+                                    producer.add(jsonArray7.getString(i));
+                                }
+                                progressDialog.dismiss();
+                            }
+                            getadapter(pic, productid, product_name, price, category, producer);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(Prodictlists.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+        ){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("search",newText);
+//                params.put("username",username);
+//                params.put("password",password);
+                return params;
+            }
+        };
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     private void lol() {
@@ -120,7 +204,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(prodictlists.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Prodictlists.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
         ){
@@ -137,9 +221,9 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
     }
 
     private void getadapter(ArrayList<String> pic, ArrayList<String> productid, ArrayList<String> product_name, ArrayList<String> price, ArrayList<String> category, ArrayList<String> producer) {
-        customAdapter = new CustomAadapter(prodictlists.this,pic, productid, product_name, price, category, producer,this);
+        customAdapter = new CustomAadapter(Prodictlists.this,pic, productid, product_name, price, category, producer,this);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(prodictlists.this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(Prodictlists.this));
     }
 
 //    void storeDataInArrays(){
@@ -168,7 +252,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
 
     @Override
     public void onItemUpdate(int position) {
-        Intent intent = new Intent(prodictlists.this, productupdate.class);
+        Intent intent = new Intent(Prodictlists.this, productupdate.class);
         intent.putExtra("name",product_name.get(position));
         intent.putExtra("pic",pic.get(position));
         intent.putExtra("id",productid.get(position));
@@ -193,9 +277,9 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
 
                         try {
                             JSONObject obj = new JSONObject(s);
-                            Toast.makeText(prodictlists.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Prodictlists.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-                            Intent intent=new Intent(getApplicationContext(),prodictlists.class);
+                            Intent intent=new Intent(getApplicationContext(), Prodictlists.class);
                             startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -204,7 +288,7 @@ public class prodictlists extends AppCompatActivity implements RecyclerViewInter
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(prodictlists.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Prodictlists.this, volleyError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
         ){

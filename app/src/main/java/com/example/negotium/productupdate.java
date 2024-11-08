@@ -3,13 +3,11 @@ package com.example.negotium;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -223,7 +221,7 @@ public class productupdate extends AppCompatActivity implements RecyclerViewInte
                             JSONObject obj = new JSONObject(s);
                             Toast.makeText(productupdate.this, obj.getString("message"), Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-                            Intent intent=new Intent(getApplicationContext(),prodictlists.class);
+                            Intent intent=new Intent(getApplicationContext(), Prodictlists.class);
                             startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
