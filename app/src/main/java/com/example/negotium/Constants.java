@@ -23,6 +23,7 @@ public class Constants {
     public static final String URL_GETPRODUCTRATING = ROOT_URL+"getproductrating.php";
     public static final String URL_GETREQUESTPRODUCT = ROOT_URL+"getrequestproduct.php";
     public static final String URL_GETBUYDATE = ROOT_URL+"getbuydate.php";
+    public static final String URL_GETBUYUSER = ROOT_URL+"getbuyuser.php";
     public static final String URL_ADMINSUBITEM = ROOT_URL+"adminsubitem.php";
     public static final String URL_ADMINITEM = ROOT_URL+"adminitem.php";
     public static final String URL_ADMINTEXTLIST = ROOT_URL+"admintextlist.php";

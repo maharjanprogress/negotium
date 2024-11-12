@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClientRequest">
+    tools:context=".SortByUser">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
@@ -23,13 +24,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sortuser" />
+        app:layout_constraintTop_toBottomOf="@+id/sortdate" />
 
     <Button
-        android:id="@+id/sortuser"
+        android:id="@+id/sortdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Sort"
+        android:text="Date Sort"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_toolbar" />
 

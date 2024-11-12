@@ -228,7 +228,7 @@ public class productlook extends AppCompatActivity {
     }
 
     private void sendAPI(Integer userid, String id, String quantity, Integer flag) {
-        progressDialog.setMessage("Adding to wishlist...");
+        progressDialog.setMessage("Adding to list...");
         progressDialog.show();
         String URL = null;
         if(flag==1){
