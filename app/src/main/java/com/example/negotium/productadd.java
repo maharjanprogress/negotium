@@ -135,12 +135,6 @@ public class productadd extends AppCompatActivity implements RecyclerViewInterfa
 //                        else{
 //                            Toast.makeText(productadd.this, "not done", Toast.LENGTH_SHORT).show();
 //                        }
-//                        Boolean insert=databaseHelper.insertDetails(please,product_name,producer,description,price,category,cid);
-//                        if(insert==true){
-//                            Toast.makeText(productadd.this, "the image is sucessfully inserted", Toast.LENGTH_SHORT).show();
-//                            Intent intent=new Intent(getApplicationContext(),productadd.class);
-//                            startActivity(intent);
-//                        }
 //                        else {
 //                            Toast.makeText(productadd.this, "no image", Toast.LENGTH_SHORT).show();
 //                        }

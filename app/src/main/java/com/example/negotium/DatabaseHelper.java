@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDatabase) {
         MyDatabase.execSQL("create Table allusers(userid INTEGER primary key autoincrement, name TEXT, email TEXT , password TEXT)");
-        MyDatabase.execSQL("CREATE TABLE product (productid INTEGER PRIMARY KEY autoincrement, product_name TEXT NOT NULL, cateid INTEGER,subcate TEXT, price TEXT NOT NULL, pic BLOB,description text,producer text,FOREIGN KEY('cateid') REFERENCES 'category'('cateid'))");
+        MyDatabase.execSQL("CREATE TABLE product (productid INTEGER PRIMARY KEY autoincrement, product_name TEXT NOT NULL, category TEXT,subcate TEXT, price TEXT NOT NULL, pic BLOB,description text,producer text)");
         MyDatabase.execSQL("CREATE TABLE category(cateid INTEGER PRIMARY KEY autoincrement,category TEXT NOT NULL unique)");
     }
 
@@ -33,6 +33,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         MyDatabase.execSQL("drop table if exists allusers");
         MyDatabase.execSQL("drop table if exists product");
         MyDatabase.execSQL("drop table if exists category");
+    }
+    public  Boolean logoutdb(){
+        SQLiteDatabase MyDatabase = this.getWritableDatabase();
+        MyDatabase.execSQL("DELETE FROM product");
+        return true;
     }
 
     public Boolean insertData(String name, String email, String password){
@@ -66,7 +71,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
-    public boolean insertDetails(Bitmap pic,String product_name,String producer,String description,String price,String category,String id){
+    public boolean insertDetails(Bitmap pic,String product_name,String producer,String description,String price,String category,String subcate){
 
         SQLiteDatabase db = this.getWritableDatabase();
         ByteArrayOutputStream objectByteOutputStream = new ByteArrayOutputStream();
@@ -75,12 +80,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put("product_name",product_name);
-        values.put("subcate",category);
+        values.put("subcate",subcate);
+        values.put("category",category);
         values.put("price",price);
         values.put("pic",imageInBytes);
         values.put("description",description);
         values.put("producer",producer);
-        values.put("cateid",id);
         long id1=db.insert("product",null,values);
         if(id1<=0){
             return false;

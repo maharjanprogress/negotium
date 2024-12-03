@@ -2,7 +2,7 @@ package com.example.negotium.ui.home;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +25,7 @@ import com.example.negotium.Constants;
 import com.example.negotium.CustomAdapter;
 import com.example.negotium.CustomCategory;
 import com.example.negotium.DatabaseHelper;
+import com.example.negotium.offlineThings.OfflineHome;
 import com.example.negotium.R;
 import com.example.negotium.RecyclerViewInterface;
 import com.example.negotium.RequestHandler;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
     ArrayList<String> productid, product_name, category, subcate,price,pic,description,producer,categoryy;
     ArrayList<String> rating;
     DatabaseHelper db;
+    Bitmap please;
     private ProgressDialog progressDialog;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -87,7 +89,7 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
         categoryy = new ArrayList<>();
         rating = new ArrayList<>();
         lol();
-//        db= new DatabaseHelper(getContext());
+        db= new DatabaseHelper(getContext());
 //        prodpic =new ArrayList<>();
 //        productid = new ArrayList<>();
 //        productname = new ArrayList<>();
@@ -371,6 +373,8 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface{
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getContext(), volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), OfflineHome.class);
+                startActivity(intent);
             }
         }
         ){

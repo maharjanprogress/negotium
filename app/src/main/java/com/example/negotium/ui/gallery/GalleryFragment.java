@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -21,7 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.negotium.Constants;
-import com.example.negotium.MainActivity;
+import com.example.negotium.offlineThings.OfflineHome;
 import com.example.negotium.R;
 import com.example.negotium.RequestHandler;
 import com.example.negotium.SharedPrefManager;
@@ -152,6 +151,8 @@ public class GalleryFragment extends Fragment implements WishlistListener {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getContext(), volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), OfflineHome.class);
+                startActivity(intent);
             }
         }
         ){

@@ -13,11 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.negotium.DatabaseHelper;
 import com.example.negotium.LoginActivity;
 import com.example.negotium.R;
 import com.example.negotium.SharedPrefManager;
 
 public class Logout extends Fragment {
+    DatabaseHelper db;
 
 
     public static Logout newInstance() {
@@ -34,6 +36,8 @@ public class Logout extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SharedPrefManager.getInstance(getContext()).logout();
+        db= new DatabaseHelper(getContext());
+        db.logoutdb();
         startActivity(new Intent(getContext(), LoginActivity.class));
         // TODO: Use the ViewModel
     }

@@ -2,9 +2,7 @@ package com.example.negotium;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
@@ -14,10 +12,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.negotium.offlineThings.OfflineHome;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
@@ -26,15 +23,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.negotium.databinding.ActivityMainBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -109,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.hide();
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), OfflineHome.class);
+                startActivity(intent);
             }
         }){
             @Nullable

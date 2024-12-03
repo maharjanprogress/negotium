@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -26,13 +24,12 @@ import com.example.negotium.BuyList;
 import com.example.negotium.BuylistAdapter;
 import com.example.negotium.BuylistListener;
 import com.example.negotium.Constants;
+import com.example.negotium.offlineThings.OfflineHome;
 import com.example.negotium.R;
 import com.example.negotium.RateProduct;
 import com.example.negotium.RequestHandler;
 import com.example.negotium.SharedPrefManager;
-import com.example.negotium.Wishlist;
 import com.example.negotium.databinding.FragmentSlideshowBinding;
-import com.example.negotium.productlook;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -134,6 +131,8 @@ public class SlideshowFragment extends Fragment implements BuylistListener {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getContext(), volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), OfflineHome.class);
+                startActivity(intent);
             }
         }
         ){
